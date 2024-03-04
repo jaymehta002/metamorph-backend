@@ -10,7 +10,11 @@ const port = process.env.PORT || 3000;
 connectToDB();
 
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+    optionsSuccessStatus: 200
+}));
 app.use('/blog', blogRoutes);
 app.use('/job', jobRoutes);
 app.use('/admin', authRoutes);
