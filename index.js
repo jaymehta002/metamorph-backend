@@ -11,11 +11,16 @@ connectToDB();
 
 app.use(express.json())
 app.use(cors({
-    origin: 'https://metamorph-ochre.vercel.app',
-    accessControlAllowOrigin: 'https://metamorph-ochre.vercel.app',
+    origin: ['https://metamorph-ochre.vercel.app', 'http://localhost:3000', "http://localhost:5173",
+        "http://localhost:5173/*"],
+    accessControlAllowOrigin: ['https://metamorph-ochre.vercel.app', 'http://localhost:3000', "http://localhost:5173",
+    "http://localhost:5173/*"],
     credentials: true,
     optionsSuccessStatus: 200
 }));
+
+
+
 app.use('/blog', blogRoutes);
 app.use('/job', jobRoutes);
 app.use('/admin', authRoutes);

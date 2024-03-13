@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+
 // Signup route
 // router.post('/signup', async (req, res) => {
 //   try {
@@ -31,13 +32,14 @@ router.post('/login', async (req, res) => {
       }
       
       // Generate JWT token
-      const token = jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ email : user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
       // Send token in response
-      res.set('Authorization', `${token}`);
+      user.token = token
+    //   res.json(user.token)
         
         // Send token in response
-        res.status(200).json({ message: 'Login successful', token });
+     res.status(200).json({ message: 'Login successful', token });
   } catch (error) {
       console.error('Error logging in:', error);
       res.status(500).json({ error: 'Internal Server Error' });
