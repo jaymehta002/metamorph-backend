@@ -11,10 +11,8 @@ connectToDB();
 
 app.use(express.json())
 app.use(cors({
-    origin: ['https://metamorph-ochre.vercel.app', 'http://localhost:3000', "http://localhost:5173",
-        "http://localhost:5173/*"],
-    accessControlAllowOrigin: ['https://metamorph-ochre.vercel.app', 'http://localhost:3000', "http://localhost:5173",
-    "http://localhost:5173/*"],
+    origin: 'https://metamorph-ochre.vercel.app',
+    accessControlAllowOrigin: 'https://metamorph-ochre.vercel.app',
     credentials: true,
     optionsSuccessStatus: 200
 }));
