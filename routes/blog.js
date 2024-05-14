@@ -36,7 +36,7 @@ const upload = multer({ storage: storage });
 router.post('/create',upload.single('thumbnail'), async (req, res) => {
     try {
         const { title, content } = req.body;
-        const thumbnailPath = req.file?.path || '';
+        const thumbnailPath = req.file?.path || null;
         const thumbnailUrl = await uploadImageToCloudinary(thumbnailPath);
         const blog = new Blog({
             title,

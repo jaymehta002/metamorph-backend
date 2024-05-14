@@ -3,21 +3,21 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 // Signup route
-// router.post('/signup', async (req, res) => {
-//   try {
-//     const { email } = req.body;
-//     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//     const newUser = new User({
-//       email: req.body.email,
-//       password: hashedPassword,
-//     });
-//     await newUser.save();
-//     res.status(201).json({ message: 'User created successfully' });
-//   } catch (error) {
-//     console.error('Error signing up:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
+router.post('/signup', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const newUser = new User({
+      email: req.body.email,
+      password: hashedPassword,
+    });
+    await newUser.save();
+    res.status(201).json({ message: 'User created successfully' });
+  } catch (error) {
+    console.error('Error signing up:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 router.post('/login', async (req, res) => {
   try {
