@@ -20,7 +20,7 @@ const uploadImageToCloudinary = async (filePath) => {
         console.error('Error uploading image to Cloudinary:', error);
         throw error;
     }
-};
+};    
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -57,7 +57,7 @@ router.get('/all' ,async (req, res) => {
         res.status(200).json(blogs);
     } catch (error) {
         console.error('Error fetching blog posts:', error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: "Internal Server Error, Please try again" });
     }
 });
 
